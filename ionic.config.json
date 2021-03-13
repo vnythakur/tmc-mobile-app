@@ -1,0 +1,7 @@
+{
+  "name": "tmc-new",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

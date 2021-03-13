@@ -1,0 +1,63 @@
+/* .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .top {
+        flex: 1;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h1 {
+            font-size: 40px;
+            font-style: italic;
+    
+        }
+        p {
+            font-size: 18px;
+            width: 70%;
+        }
+    }
+    
+    .bottom {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        ion-button {
+            margin: 0;
+            height: 50px;
+        }
+    }    
+}
+
+ */
+
+ ion-content{
+    
+    .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        ion-avatar {
+            width: 120px;
+            height: 120px;
+        }
+
+        h1 {
+            font-family: 'Nunito', sans-serif;
+            color: white;
+        }
+
+        ion-row {
+            margin-top: 80px;
+        }
+    }
+ }

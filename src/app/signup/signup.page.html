@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="wrapper">
+    <form [formGroup]="loginForm">
+
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="email" formControlName="name">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email Address</ion-label>
+        <ion-input type="email" formControlName="email">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Mobile</ion-label>
+        <ion-input type="email" formControlName="mobile">
+        </ion-input>
+      </ion-item>
+
+      <br>
+      <ion-row>
+        <ion-col class="sign-in-button ion-text-center">
+          <ion-button color="primary" (click)="join()">Join</ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 40px;" class="ion-text-center">
+          <ion-col>
+              <p class="light">Already have an account?</p>
+              <ion-button fill="clear" color="light" routerLink="/login">Login Now</ion-button>
+          </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+
+
+</ion-content>
