@@ -1,3 +1,5 @@
+import { config } from './config';
+
 export const environment = {
   production: true,
   firebaseConfig: {
@@ -8,6 +10,5 @@ export const environment = {
     messagingSenderId: "847352531826",
     appId: "1:847352531826:web:fdb1ee8bbf7ae509886beb"
   },
-  admin: 'admin@gmail.com',
-  appUrl: 'https://drive.google.com/drive/folders/1VoPmMInD9W6kktHca06mWiwhu7ebx_cv?usp=sharing'
+  ...config
 };

@@ -3,14 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="showSearch = !showSearch">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Contacts</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="showSearch">
+    <ion-searchbar [(ngModel)]="keyword" debounce="500"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let contact of contacts">
+    <ion-item *ngFor="let contact of contacts | filter:keyword">
       <ion-label>{{ contact.name }}</ion-label>
       <ion-button fill="clear" slot="end" color="tertiary" (click)="invite(contact)">
         INVITE

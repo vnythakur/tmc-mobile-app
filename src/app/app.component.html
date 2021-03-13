@@ -3,9 +3,9 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list" *ngIf="(user$ | async) as user">
-          <!-- <ion-list-header>{{ user?.displayName }}</ion-list-header> -->
-          <ion-list-header>{{ user?.email }}</ion-list-header>
-          <ion-note></ion-note>
+          <ion-list-header>{{ user?.name }}</ion-list-header>
+          <!-- <ion-list-header></ion-list-header> -->
+          <ion-note>{{ user?.mobile }}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="forward" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

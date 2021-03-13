@@ -16,11 +16,14 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Contacts } from '@ionic-native/contacts/ngx';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, 
+    Ng2SearchPipeModule,
     IonicModule.forRoot({
       mode: 'md'
     }),

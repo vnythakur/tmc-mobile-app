@@ -38,7 +38,7 @@ export class HelperService {
     toast.present();
   }
 
-  async showLoader(msg: any) {
+  async showLoader(msg?: any) {
     this.loading = await this.loadingCtrl.getTop();
 
     if (!this.loading) {

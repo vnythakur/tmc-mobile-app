@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
-import {} from 'firebase';
+import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
@@ -43,5 +43,9 @@ export class AuthService {
 
   getAllUsers(): AngularFirestoreCollection<any> {
     return this.firestore.collection('users');
+  }
+
+  getUser(uid: string){
+    return this.firestore.doc(`users/${uid}`).valueChanges();
   }
 }

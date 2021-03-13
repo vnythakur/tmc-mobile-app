@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pageName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <iframe (load)="pageLoaded()" [src]="baseUrl" frameborder="0" width="100%" height="100%"></iframe>
+
+</ion-content>

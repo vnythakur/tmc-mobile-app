@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
   },
+  {
+    path: 'iframe-page/:id',
+    loadChildren: () => import('./iframe-page/iframe-page.module').then( m => m.IframePagePageModule)
+  },
 ];
 
 @NgModule({
