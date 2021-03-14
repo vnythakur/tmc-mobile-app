@@ -10,7 +10,7 @@
 <ion-content>
 
   <div class="wrapper">
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" style="width: 100%;">
 
       <ion-item>
         <ion-label position="floating">Name</ion-label>
@@ -34,6 +34,50 @@
         <ion-input type="email" formControlName="mobile">
         </ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Address</ion-label>
+        <ion-textarea formControlName="address"></ion-textarea>
+      </ion-item>
+
+      <ion-radio-group formControlName="area">
+        <ion-list-header>
+          <ion-label style="color: white;">Area</ion-label>
+        </ion-list-header>
+    
+        <ion-grid class="area-field-options ion-no-padding">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label>Muncipalities</ion-label>
+                <ion-radio slot="start" value="Muncipalities"></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label>Panchayat</ion-label>
+                <ion-radio slot="start" value="Panchayat"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-item *ngIf="area.value === 'Muncipalities'; else blockField">
+          <ion-label position="floating">Ward No.</ion-label>
+          <ion-input type="text" formControlName="ward"></ion-input>
+        </ion-item>
+
+        <ng-template #blockField>
+          <ion-item>
+            <ion-label position="floating">Block No.</ion-label>
+            <ion-input type="text" formControlName="block"></ion-input>
+          </ion-item>
+        </ng-template>
+        
+        
+    
+        
+      </ion-radio-group>
 
       <br>
       <ion-row>

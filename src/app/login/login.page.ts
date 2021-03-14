@@ -5,6 +5,7 @@ import { HelperService } from '../service/helper.service';
 
 import { environment } from '../../environments/environment';
 import { MenuController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,46 +14,59 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  public email: string;
-  public password: string;
+  loginForm: FormGroup;
 
   constructor(
     private auth: AuthService,
+    private formBuilder: FormBuilder,
     private router: Router,
     public helper: HelperService,
     public menu: MenuController,
   ) { 
     this.menu.enable(false);
+
+    this.loginForm = this.formBuilder.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required]],
+    });
+
+  }
+
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
   }
 
   ngOnInit() {
   }
 
   login() {
-    const email = this.email.trim();
 
-    if (email === '' || email === undefined) {
-      this.helper.showToast('Enter email address');
-      return false;
-    }
-    if (this.password === '' || this.password === undefined) {
-      this.helper.showToast('Enter password');
-      return false;
-    }
-    this.helper.showLoader('');
-    this.auth.login(email, this.password).then(
-      async res => {
-        this.helper.hideLoader();
-        console.log('rea', res);
+    this.loginForm.markAllAsTouched();
 
-        environment.admin === email ? this.router.navigateByUrl('/admin') : this.router.navigateByUrl('/home');
-      },
-      error => {
-        this.helper.hideLoader();
-        this.helper.showToast(error.message);
-        console.log(error);
-      }
-    );
+    if (this.loginForm.valid) {
+      this.helper.showLoader('');
+
+      const email = this.email.value.trim();
+
+      this.auth.login(email, this.password.value).then(
+        async res => {
+          this.helper.hideLoader();
+          console.log('rea', res);
+  
+          environment.admin === email ? this.router.navigateByUrl('/admin') : this.router.navigateByUrl('/home');
+        },
+        error => {
+          this.helper.hideLoader();
+          this.helper.showToast(error.message);
+          console.log(error);
+        }
+      );
+    }
+    
   }
 
 }

@@ -25,18 +25,67 @@ export class SignupPage implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
       mobile: ["", [Validators.required]],
+      address: ["", [Validators.required]],
+      area: ["Muncipalities", [Validators.required]],
+      ward: ["", [Validators.required]],
+      block: ["", []],
     });
+
+    this.area.valueChanges.subscribe(value => {
+      this.ward.setValue('');
+      this.block.setValue('');
+      
+      if (value === 'Muncipalities') {
+        this.ward.setValidators([Validators.required]);
+        this.block.setValidators([]);
+      } else {
+        this.ward.setValidators([]);
+        this.block.setValidators([Validators.required]);
+      }
+
+      this.ward.updateValueAndValidity();
+      this.block.updateValueAndValidity();
+    });
+
+  }
+
+  get name() {
+    return this.loginForm.get('name');
+  }
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
+  get mobile() {
+    return this.loginForm.get('mobile');
+  }
+  get address() {
+    return this.loginForm.get('address');
+  }
+  get area() {
+    return this.loginForm.get('area');
+  }
+  get ward() {
+    return this.loginForm.get('ward');
+  }
+  get block() {
+    return this.loginForm.get('block');
   }
 
   ngOnInit() {
   }
 
   join() {
+
+    this.loginForm.markAllAsTouched();
+
     if (this.loginForm.valid) {
 
       this.helper.showLoader('');
 
-      this.auth.signUpWithEmail(this.loginForm.get('email').value, this.loginForm.get('password').value).then(async (response) => {
+      this.auth.signUpWithEmail(this.email.value, this.password.value).then(async (response) => {
         console.log(response.user.uid);
 
         const user = { ...this.loginForm.value, uid: response.user.uid };

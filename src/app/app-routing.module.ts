@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'iframe-page/:id',
     loadChildren: () => import('./iframe-page/iframe-page.module').then( m => m.IframePagePageModule)
   },
+  {
+    path: 'user-detail',
+    loadChildren: () => import('./user-detail/user-detail.module').then( m => m.UserDetailPageModule)
+  },
 ];
 
 @NgModule({

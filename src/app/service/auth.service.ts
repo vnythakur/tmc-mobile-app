@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
@@ -10,6 +10,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 export class AuthService {
 
+
+  selectedUser = new BehaviorSubject(null);
+  selectedtUser$ = this.selectedUser.asObservable();
 
   constructor(
     public afAuth: AngularFireAuth,

@@ -7,3 +7,22 @@
     flex-direction: column;
     margin: auto;
 }
+
+// textarea {
+//     background-color: transparent;
+//     border: 0;
+// }
+
+.area-field-options {
+    ion-row {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+    }
+    ion-item {
+        --padding-start: 8px;
+        --inner-border-width: 0;
+        ion-radio {
+            margin-right: 8px;
+        }
+    }
+}
+

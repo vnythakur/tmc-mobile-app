@@ -21,10 +21,10 @@ export class HelperService {
     if (!mobile) {
       return;
     }
-    const browser = this.iab.create(`tel:${mobile}`);
+    const browser = this.iab.create(`tel:${mobile}`, '_system');
   }
 
-  inviteOnWhatsApp(mobile, text) {
+  inviteOnWhatsApp(mobile, text = '') {
     this.iab.create(`whatsapp://send?phone=${mobile}&text=${text}`, '_system');
   }
 

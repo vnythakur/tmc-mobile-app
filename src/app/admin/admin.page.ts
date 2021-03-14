@@ -15,6 +15,10 @@ export class AdminPage implements OnInit {
 
   allUsers$;
 
+  showSearch = false;
+
+  keyword = '';
+  
   constructor(
     private router: Router,
     private auth: AuthService,
@@ -32,6 +36,19 @@ export class AdminPage implements OnInit {
 
   logout() {
     this.auth.logout().then(() => this.router.navigateByUrl('/welcome'));
+  }
+
+  nl2br (str, is_xhtml) {
+      if (typeof str === 'undefined' || str === null) {
+          return '';
+      }
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+  }
+
+  open(user) {
+    this.auth.selectedUser.next(user);
+    this.router.navigateByUrl('/user-detail');
   }
 
 }

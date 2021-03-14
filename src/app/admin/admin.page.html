@@ -1,26 +1,31 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="secondary">
+      <ion-button (click)="showSearch = !showSearch">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
       <ion-button (click)="logout()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Admin</ion-title>
   </ion-toolbar>
+  <ion-toolbar *ngIf="showSearch">
+    <ion-searchbar [(ngModel)]="keyword" debounce="500"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let user of (allUsers$ | async)">
-      <ion-item>
+    <ion-item-sliding *ngFor="let user of (allUsers$ | async) | filter:keyword">
+      <ion-item (click)="open(user)">
         <ion-label class="ion-text-wrap">
           <ion-text color="primary">
             <h3>{{ user.name }}</h3>
           </ion-text>
-          <p>{{ user.email }}</p>
-          <ion-text color="secondary">
-            <p>{{ user.mobile }}</p>
+          <ion-text color="light">
+            <p [innerHTML]="nl2br(user.address, false)"></p>
           </ion-text>
         </ion-label>
       </ion-item>
